@@ -35,7 +35,7 @@ Cet élément est facultatif. En effet, il n’est parfois pas pertinent. On peu
 
 ## `<sujet>`
 
-Le sujet contient une description **succinte** des changements. En général, on se limite à 50 caractères. De nombreux outils avertissent d’ailleurs lorsque l’on dépasse la longueur maximale.
+Le sujet contient une description **succinte** des changements. En général, on se limite à 50 caractères. De nombreux outils avertissent d’ailleurs lorsque l’on dépasse la longueur maximale. 
 
 Pour adopter un style descriptif efficace, on utilise l’impératif présent : *add, change, update, remove* et non pas *changed* ou *removed*. `add caching for better performance` par exemple.
 
