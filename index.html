@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucadex</title>
+    <link rel="stylesheet" href="styles/layouts/_header.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <link rel="icon" href="https://le-campus-numerique.fr/wp-content/uploads/2020/11/favicon.png">
+    <link rel="shortcut icon" href="https://assets.pokemon.com/static2/_ui/img/favicon.ico">
+
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header class="topbar">
+        
+        <h1>Pokedex</h1>
+        
+        <nav class="navbar">
+            <ul>
+                <li><a href="">Accueil</a></li>
+                <li><a href="">Jeu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-feed">
+
+        <!-- RANDOM Pokemon-->
+        <div class="random-pokemon">
+            <div class="pokemon-details">
+                <div class="pokemon-name"></div>
+                <div class="pokemon-image">
+                    <img></img>
+                </div>
+                <div class="pokemon-infos"></div>
+            </div>
+
+            <button id="btn-refresh">Random</button>
+        </div>
+
+        <hr>
+        <!-- FEED Pokemon-->
+        <div class="generate-feed">
+            <select name="feed-gen-nb" id="feed-gen-nb">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select>
+            <button id="btn-generate-feed">Generate</button>
+        </div>
+        <div class="pokemon-list"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
