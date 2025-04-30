@@ -1,5 +1,8 @@
 const btnRefresh = document.querySelector("#btn-refresh")
 const btnFeed = document.querySelector("#btn-generate-feed")
+const pokedexLogo = document.querySelector(".pokemon-logo")
+let dropDownActive = false;
+const myTeam = []
 
 function getRdmPokemonID() {
     return Math.floor(Math.random() * 898) + 1
@@ -20,7 +23,8 @@ async function randomPokemon() {
             console.log(pokemon.name)
 
             // Bloc RANDOM
-            randomPokemonImage.src = pokemon.sprites.front_default
+            //randomPokemonImage.src = pokemon.sprites.front_default
+            randomPokemonImage.src = pokemon.sprites.other["official-artwork"].front_default
         
             randomPokemonName.innerHTML = pokemon.name
         })
@@ -52,7 +56,8 @@ async function addPokemon() {
     const pokemonImage = document.createElement("div")
     pokemonImage.classList.add("pokemon-image")
     const pokemonImageImg = document.createElement("img")
-    pokemonImageImg.src = pokemon.sprites.front_default
+    //pokemonImageImg.src = pokemon.sprites.front_default
+    pokemonImageImg.src = pokemon.sprites.other["official-artwork"].front_default
 
     // Infos
     const pokemonInfos = document.createElement("div")
@@ -80,9 +85,24 @@ function feedPokemon() {
     }
 }
 
+function dropDownMenu() {
+    const pokedexLogoList = pokedexLogo.querySelector("ul")
+    pokedexLogoList.classList.toggle("hidden")
+}
+
+function addToMyTeam() {
+
+}
+
+function removeFromMyTeam() {
+    
+}
+
 // Appel AJAX au chargement de la page
-window.addEventListener('DOMContentLoaded', randomPokemon);
+window.addEventListener('DOMContentLoaded', randomPokemon)
 
 // Re-appel ajax quand clic bouton
 btnRefresh.addEventListener("click", randomPokemon)
 btnFeed.addEventListener("click", feedPokemon)
+
+pokedexLogo.addEventListener("click", dropDownMenu)

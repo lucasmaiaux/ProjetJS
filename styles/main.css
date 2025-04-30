@@ -5,10 +5,14 @@
 }
 
 hr {
-    width: 90%; /* prend toute la place dispo */
+    width: 75%; 
     height: 1px;
     border: none;
-    background: #3f3f3f; /* une petite couleur sympa */
+    background: #3f3f3f;
+}
+
+.hidden {
+    visibility : hidden;
 }
 
 .main-feed {
@@ -20,6 +24,28 @@ hr {
     
 }
 
+.pokemon-name {
+    text-align : center;
+    font-size: 1.5rem;
+    padding-top : 5px;
+}
+
+.random-pokemon .pokemon-name {
+    font-size: 3rem;
+}
+
+.pokemon-name::first-letter {
+    text-transform: capitalize;
+}
+
+.random-pokemon .pokemon-image img {
+    display: block;
+    margin: auto;
+    max-height: 300px;
+    width: auto;
+}
+
+/*     RANDOM        */
 .random-pokemon {
     margin : 10px;
     padding : 10px;
@@ -31,24 +57,35 @@ hr {
     align-items:center;
 }
 
-.pokemon-name {
-    text-align : center;
-    font-size: 1.5rem;
-    padding-top : 5px;
-}
-
-.pokemon-name::first-letter {
-    text-transform: capitalize;
-}
-
-.pokemon-image img {
-    display: block;
-    margin: auto;
-}
-
 #btn-refresh {
     font-size: 1rem;
     padding : 5px;
+}
+
+/*     TEAM        */
+.pokemon-team {
+    height : 100px;
+    padding : 10px;
+}
+
+.pokemon-team__preview {
+    display : flex;
+    border : solid;
+}
+
+.pokemon-team__preview div {
+    width : 50px;
+    height : 50px;
+    border : solid 1px;
+}
+
+
+/*     FEED        */
+.pokemon-list .pokemon-image img {
+    display: block;
+    margin: auto;
+    max-width:100%;
+    height : auto;
 }
 
 .generate-feed {
@@ -68,15 +105,9 @@ hr {
 }
 
 .pokemon-list {
-    /*
-    border : 2px solid;
-    */
-
     display: flex;
     flex-wrap : wrap;
     justify-content : center;
-
-
 }
 
 .pokemon-list .pokemon-details {
@@ -85,5 +116,5 @@ hr {
     border : 1px solid grey;
     border-radius: 25px;
     width : 150px;
-    height : 150px;
+    height : 180px;
 }
