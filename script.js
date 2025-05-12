@@ -1,8 +1,13 @@
 const btnRefresh = document.querySelector("#btn-refresh")
 const btnFeed = document.querySelector("#btn-generate-feed")
 const pokedexLogo = document.querySelector(".pokemon-logo")
+
+const pokemonTeam = document.querySelector(".pokemon-team__preview")
+const pokemonTeamCell = pokemonTeam.querySelectorAll(".pokemon-team__preview_cell")
+
 let dropDownActive = false;
 const myTeam = []
+let myFeed = []
 
 function getRdmPokemonID() {
     return Math.floor(Math.random() * 898) + 1
@@ -33,6 +38,54 @@ async function randomPokemon() {
 
             randomPokemonName.innerHTML = "erreur"
         })
+}
+
+function updateMyTeam() {
+    pokemonTeamCell.forEach(function (object) {
+        object.innerHTML = ""
+    })
+
+
+    for (let pos in myTeam) {
+        //console.log(pokemonTeamCell[pos])
+        pokemonTeamCell[pos].innerHTML = myTeam[pos].PokemonID
+
+        const pokemonMinia = document.createElement("img")
+        pokemonMinia.src = myTeam[pos].PokemonImage
+
+        pokemonTeamCell[pos].appendChild(pokemonMinia)
+
+    }
+}
+
+async function addToMyTeam(id) {
+    if (myTeam.length < 6) {
+        const reponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        pokemon = await reponse.json()
+
+        const pokemonName = pokemon.name
+        const pokemonImage = pokemon.sprites.other["official-artwork"].front_default
+
+        const newPokemon = {
+            PokemonID: id,
+            PokemonName: pokemonName,
+            PokemonImage: pokemonImage
+        }
+
+        myTeam.push(newPokemon)
+        console.log(myTeam)
+        updateMyTeam()
+    }
+}
+
+function removeFromMyTeam() {
+    let id = this.innerText
+    console.log(id)
+    let pos = myTeam.findIndex( pokemon => pokemon.PokemonID === parseInt(id) )
+    console.log(pos)
+    myTeam.splice(pos,1)
+    //console.log(myTeam)
+    updateMyTeam()
 }
 
 // fonction qui ajoute 1 pokemon (aléatoire) au feed
@@ -69,6 +122,8 @@ async function addPokemon() {
     pokemonDetails.appendChild(pokemonInfos)
 
     pokemonFeed.appendChild(pokemonDetails)
+
+    pokemonDetails.addEventListener("click", () => addToMyTeam(id))
 }
 
 function feedPokemon() {
@@ -76,26 +131,26 @@ function feedPokemon() {
 
     let pokemonFeedObjects = pokemonFeed.querySelectorAll(".pokemon-details");
     pokemonFeedObjects.forEach(function (object) {
-        pokemonFeed.removeChild(object);
+        pokemonFeed.removeChild(object)
     });
 
     feedNbToCreate = document.querySelector("#feed-gen-nb").value
     for (let i = 0; i < feedNbToCreate; i++) {
-        addPokemon();
+        addPokemon()
     }
+
+    /*
+    pokemonFeedObjects = pokemonFeed.querySelectorAll(".pokemon-details");
+    pokemonFeedObjects.forEach(function (object) {
+        object.addEventListener("click", addToMyTeam)
+    });
+    */
+
 }
 
 function dropDownMenu() {
     const pokedexLogoList = pokedexLogo.querySelector("ul")
     pokedexLogoList.classList.toggle("hidden")
-}
-
-function addToMyTeam() {
-
-}
-
-function removeFromMyTeam() {
-    
 }
 
 // Appel AJAX au chargement de la page
@@ -106,3 +161,9 @@ btnRefresh.addEventListener("click", randomPokemon)
 btnFeed.addEventListener("click", feedPokemon)
 
 pokedexLogo.addEventListener("click", dropDownMenu)
+
+
+// Ajout de l'event remove from my team sur un clic sur une case
+pokemonTeamCell.forEach(function (object) {
+    object.addEventListener("click", removeFromMyTeam)
+})
