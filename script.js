@@ -2,6 +2,8 @@ const btnRefresh = document.querySelector("#btn-refresh")
 const btnFeed = document.querySelector("#btn-generate-feed")
 const pokedexLogo = document.querySelector(".pokemon-logo")
 
+const pokemonList = document.querySelector(".pokemon-list")
+
 const pokemonTeam = document.querySelector(".pokemon-team__preview")
 const pokemonTeamCell = pokemonTeam.querySelectorAll(".pokemon-team__preview_cell")
 
@@ -22,22 +24,24 @@ async function randomPokemon() {
     const randomPokemonImage = randomPokemonElement.querySelector("img")
     const randomPokemonName = randomPokemonElement.querySelector(".pokemon-name")
 
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then(response => response.json())
-        .then(pokemon => {
-            console.log(pokemon.name)
 
-            // Bloc RANDOM
-            //randomPokemonImage.src = pokemon.sprites.front_default
-            randomPokemonImage.src = pokemon.sprites.other["official-artwork"].front_default
-        
-            randomPokemonName.innerHTML = pokemon.name
-        })
-        .catch(err => {
-            console.error(err)
+    const [reponse, reponseFR] = await Promise.all([
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
+        fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+    ]);
+    
+    const [pokemon, pokemonFR] = await Promise.all([
+        reponse.json(),
+        reponseFR.json()
+    ]);
 
-            randomPokemonName.innerHTML = "erreur"
-        })
+    console.log(pokemon.name)
+
+    // Bloc RANDOM
+    //randomPokemonImage.src = pokemon.sprites.front_default
+    randomPokemonImage.src = pokemon.sprites.other["official-artwork"].front_default
+    randomPokemonName.innerHTML = pokemonFR.names.find(n => n.language.name === "fr")?.name;
+
 }
 
 function updateMyTeam() {
@@ -60,29 +64,18 @@ function updateMyTeam() {
 
 async function addToMyTeam(id) {
     if (myTeam.length < 6) {
-        const reponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        pokemon = await reponse.json()
-
-        const pokemonName = pokemon.name
-        const pokemonImage = pokemon.sprites.other["official-artwork"].front_default
-
-        const newPokemon = {
-            PokemonID: id,
-            PokemonName: pokemonName,
-            PokemonImage: pokemonImage
-        }
-
-        myTeam.push(newPokemon)
-        console.log(myTeam)
+        const index = myFeed.findIndex( pokemon => pokemon.PokemonID === parseInt(id))
+        myTeam.push(myFeed[index])
+        //console.log(myTeam)
         updateMyTeam()
     }
 }
 
 function removeFromMyTeam() {
     let id = this.innerText
-    console.log(id)
+    //console.log(id)
     let pos = myTeam.findIndex( pokemon => pokemon.PokemonID === parseInt(id) )
-    console.log(pos)
+    //console.log(pos)
     myTeam.splice(pos,1)
     //console.log(myTeam)
     updateMyTeam()
@@ -93,8 +86,33 @@ async function addPokemon() {
     const pokemonFeed = document.querySelector(".pokemon-list")
 
     const id = getRdmPokemonID()
-    const reponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    pokemon = await reponse.json()
+    const [reponse, reponseFR] = await Promise.all([
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
+        fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+    ]);
+    
+    const [pokemon, pokemonFR] = await Promise.all([
+        reponse.json(),
+        reponseFR.json()
+    ]);
+
+    const nameFR = pokemonFR.names.find(n => n.language.name === "fr")?.name;
+    const flavorFR = pokemonFR.flavor_text_entries.find(entry => entry.language.name === "fr")?.flavor_text;
+    const cleanTextFR = flavorFR?.replace(/\f/g, ' ').replace(/\n/g, ' ');
+    
+    const newPokemon = {
+        PokemonID: id,
+        PokemonName: pokemon.name,
+        PokemonNameFR: nameFR,
+        PokemonImage: pokemon.sprites.other["official-artwork"].front_default,
+        PokemonDescriptif: cleanTextFR,
+        PokemonTaille: pokemon.height,
+        PokemonPoids: pokemon.weight,
+        PokemonType: pokemon.types[0].type.name,
+        PokemonTalent: pokemon.abilities[0].ability.name
+    }
+
+    //console.log(nameFR, cleanTextFR)
 
     // Bloc général
     const pokemonDetails = document.createElement("div")
@@ -103,7 +121,7 @@ async function addPokemon() {
     // Name
     const pokemonName = document.createElement("div")
     pokemonName.classList.add("pokemon-name")
-    pokemonName.innerHTML = pokemon.name
+    pokemonName.innerHTML = nameFR
 
     // Image
     const pokemonImage = document.createElement("div")
@@ -114,7 +132,43 @@ async function addPokemon() {
 
     // Infos
     const pokemonInfos = document.createElement("div")
-    pokemonInfos.classList.add("pokemon-infos")
+    pokemonInfos.classList.add("pokemon-infos", "hidden")
+
+    // Infos - Name
+    const pokemonInfosName = document.createElement("div")
+    pokemonInfosName.classList.add("pokemon-infos__name")
+    pokemonInfosName.innerText = newPokemon.PokemonName
+    pokemonInfos.appendChild(pokemonInfosName)
+
+    // Infos - Descriptif
+    const pokemonInfosDescription = document.createElement("div")
+    pokemonInfosDescription.classList.add("pokemon-infos__description")
+    pokemonInfosDescription.innerText = newPokemon.PokemonDescriptif
+    pokemonInfos.appendChild(pokemonInfosDescription)
+
+    // Infos - Taille
+    const pokemonInfosHeight = document.createElement("div")
+    pokemonInfosHeight.classList.add("pokemon-infos__height")
+    pokemonInfosHeight.innerText = newPokemon.PokemonTaille
+    pokemonInfos.appendChild(pokemonInfosHeight)  
+
+    // Infos - Poids
+    const pokemonInfosWeight = document.createElement("div")
+    pokemonInfosWeight.classList.add("pokemon-infos__weight")
+    pokemonInfosWeight.innerText = newPokemon.PokemonPoids
+    pokemonInfos.appendChild(pokemonInfosWeight)   
+
+    // Infos - Type
+    const pokemonInfosType = document.createElement("div")
+    pokemonInfosType.classList.add("pokemon-infos__type")
+    pokemonInfosType.innerText = newPokemon.PokemonType
+    pokemonInfos.appendChild(pokemonInfosType)   
+
+    // Infos - Talent
+    const pokemonInfosTalent = document.createElement("div")
+    pokemonInfosTalent.classList.add("pokemon-infos__talent")
+    pokemonInfosTalent.innerText = newPokemon.PokemonTalent
+    pokemonInfos.appendChild(pokemonInfosTalent)   
 
     pokemonDetails.appendChild(pokemonName)
     pokemonDetails.appendChild(pokemonImage)
@@ -124,11 +178,14 @@ async function addPokemon() {
     pokemonFeed.appendChild(pokemonDetails)
 
     pokemonDetails.addEventListener("click", () => addToMyTeam(id))
+
+    myFeed.push(newPokemon)
 }
 
 function feedPokemon() {
     const pokemonFeed = document.querySelector(".pokemon-list")
 
+    myFeed = []
     let pokemonFeedObjects = pokemonFeed.querySelectorAll(".pokemon-details");
     pokemonFeedObjects.forEach(function (object) {
         pokemonFeed.removeChild(object)
@@ -139,13 +196,7 @@ function feedPokemon() {
         addPokemon()
     }
 
-    /*
-    pokemonFeedObjects = pokemonFeed.querySelectorAll(".pokemon-details");
-    pokemonFeedObjects.forEach(function (object) {
-        object.addEventListener("click", addToMyTeam)
-    });
-    */
-
+    console.log(myFeed)
 }
 
 function dropDownMenu() {
@@ -166,4 +217,25 @@ pokedexLogo.addEventListener("click", dropDownMenu)
 // Ajout de l'event remove from my team sur un clic sur une case
 pokemonTeamCell.forEach(function (object) {
     object.addEventListener("click", removeFromMyTeam)
+})
+
+// Ajout des events de layout sur les boutons
+const btnLayoutGrid = document.querySelector("#btn-layout-grid")
+btnLayoutGrid.addEventListener("click", () => {
+    pokemonList.classList.add("pokemon-list--grid"); 
+    pokemonList.classList.remove("pokemon-list--list"); 
+    const info_list = pokemonList.querySelectorAll(".pokemon-details .pokemon-infos")
+    info_list.forEach(function (object) {
+        object.classList.add("hidden")
+    })
+})
+
+const btnLayoutList = document.querySelector("#btn-layout-list")
+btnLayoutList.addEventListener("click", () => {
+    pokemonList.classList.add("pokemon-list--list"); 
+    pokemonList.classList.remove("pokemon-list--grid"); 
+    const info_list = pokemonList.querySelectorAll(".pokemon-details .pokemon-infos")
+    info_list.forEach(function (object) {
+        object.classList.remove("hidden")
+    })
 })

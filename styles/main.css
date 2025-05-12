@@ -102,6 +102,8 @@ hr {
 }
 
 .generate-feed {
+    display : flex;
+    align-items : center;
     padding : 20px;
     margin-left: auto;
     margin-right: auto;
@@ -115,12 +117,12 @@ hr {
 #btn-generate-feed {
     font-size: 1rem;
     padding : 5px;
+    margin-left : 20px;
+    margin-right : 20px;
 }
 
-.pokemon-list {
-    display: flex;
-    flex-wrap : wrap;
-    justify-content : center;
+.generate-feed svg{
+    margin-right : 20px;
 }
 
 .pokemon-list .pokemon-details {
@@ -130,4 +132,16 @@ hr {
     border-radius: 25px;
     width : 150px;
     height : 180px;
+}
+
+.pokemon-list--grid {
+    display: flex;
+    flex-wrap : wrap;
+    justify-content : center;
+}
+
+.pokemon-list--list {
+    display: flex;
+    flex-direction : column;
+    justify-content : center;
 }

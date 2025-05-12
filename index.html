@@ -9,7 +9,7 @@
 
     <link rel="icon" href="https://le-campus-numerique.fr/wp-content/uploads/2020/11/favicon.png">
     <link rel="shortcut icon" href="https://assets.pokemon.com/static2/_ui/img/favicon.ico">
-
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -72,10 +72,14 @@
                 <option value="50">50</option>
             </select>
             <button id="btn-generate-feed">Generate</button>
+            <button id="btn-layout-grid" data-lucide="layout-grid"></button>
+            <button id="btn-layout-list" data-lucide="layout-list"></button>
         </div>
-        <div class="pokemon-list"></div>
+        <div class="pokemon-list pokemon-list--grid"></div>
     </div>
-
+    
+    <script>lucide.createIcons();</script>
     <script src="script.js"></script>
+
 </body>
 </html>
