@@ -39,7 +39,7 @@ async function randomPokemon() {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
     ]);
-    
+
     const [pokemon, pokemonFR] = await Promise.all([
         reponse.json(),
         reponseFR.json()
@@ -74,7 +74,7 @@ function updateMyTeam() {
 
 async function addToMyTeam(id) {
     if (myTeam.length < 6) {
-        const index = myFeed.findIndex( pokemon => pokemon.PokemonID === parseInt(id))
+        const index = myFeed.findIndex(pokemon => pokemon.PokemonID === parseInt(id))
         myTeam.push(myFeed[index])
         //console.log(myTeam)
         updateMyTeam()
@@ -84,9 +84,9 @@ async function addToMyTeam(id) {
 function removeFromMyTeam() {
     let id = this.innerText
     //console.log(id)
-    let pos = myTeam.findIndex( pokemon => pokemon.PokemonID === parseInt(id) )
+    let pos = myTeam.findIndex(pokemon => pokemon.PokemonID === parseInt(id))
     //console.log(pos)
-    myTeam.splice(pos,1)
+    myTeam.splice(pos, 1)
     //console.log(myTeam)
     updateMyTeam()
 }
@@ -100,7 +100,7 @@ async function addPokemon() {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
     ]);
-    
+
     const [pokemon, pokemonFR] = await Promise.all([
         reponse.json(),
         reponseFR.json()
@@ -109,7 +109,7 @@ async function addPokemon() {
     const nameFR = pokemonFR.names.find(n => n.language.name === "fr")?.name;
     const flavorFR = pokemonFR.flavor_text_entries.find(entry => entry.language.name === "fr")?.flavor_text;
     const cleanTextFR = flavorFR?.replace(/\f/g, ' ').replace(/\n/g, ' ');
-    
+
     const newPokemon = {
         PokemonID: id,
         PokemonName: capitalizeFirstLetter(pokemon.name),
@@ -120,7 +120,7 @@ async function addPokemon() {
         PokemonPoids: pokemon.weight,
         PokemonType: capitalizeFirstLetter(pokemon.types[0].type.name),
         PokemonTalent: capitalizeFirstLetter(pokemon.abilities[0].ability.name),
-        PokemonAddManual : false
+        PokemonAddManual: false
     }
 
     //console.log(nameFR, cleanTextFR)
@@ -170,27 +170,27 @@ async function addPokemon() {
     // Infos - Taille
     const pokemonInfosHeight = document.createElement("div")
     pokemonInfosHeight.classList.add("pokemon-infos__height")
-    pokemonInfosHeight.innerHTML = `<b>Taille</b> : ${(newPokemon.PokemonTaille/10)}m`
-    pokemonInfos.appendChild(pokemonInfosHeight)  
+    pokemonInfosHeight.innerHTML = `<b>Taille</b> : ${(newPokemon.PokemonTaille / 10)}m`
+    pokemonInfos.appendChild(pokemonInfosHeight)
 
     // Infos - Poids
     const pokemonInfosWeight = document.createElement("div")
     pokemonInfosWeight.classList.add("pokemon-infos__weight")
-    pokemonInfosWeight.innerHTML = `<b>Poids</b> : ${(newPokemon.PokemonPoids/10)}kg`
-    pokemonInfos.appendChild(pokemonInfosWeight)   
+    pokemonInfosWeight.innerHTML = `<b>Poids</b> : ${(newPokemon.PokemonPoids / 10)}kg`
+    pokemonInfos.appendChild(pokemonInfosWeight)
 
     // Infos - Type
     const pokemonInfosType = document.createElement("div")
     pokemonInfosType.classList.add("pokemon-infos__type")
     pokemonInfosType.innerHTML = `<b>Type</b> : ${newPokemon.PokemonType}`
-    pokemonInfos.appendChild(pokemonInfosType)   
+    pokemonInfos.appendChild(pokemonInfosType)
 
     // Infos - Talent
     const pokemonInfosTalent = document.createElement("div")
     pokemonInfosTalent.classList.add("pokemon-infos__talent")
     pokemonInfosTalent.innerHTML = `<b>Talent</b> : ${newPokemon.PokemonTalent}`
-    pokemonInfos.appendChild(pokemonInfosTalent)  
-    
+    pokemonInfos.appendChild(pokemonInfosTalent)
+
     // Button Add to my team
     const pokemonBtnAddTeam = document.createElement("button")
     pokemonBtnAddTeam.classList.add("btn-addTeam")
@@ -221,7 +221,7 @@ async function addPokemonID(id) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
     ]);
-    
+
     const [pokemon, pokemonFR] = await Promise.all([
         reponse.json(),
         reponseFR.json()
@@ -230,7 +230,7 @@ async function addPokemonID(id) {
     const nameFR = pokemonFR.names.find(n => n.language.name === "fr")?.name;
     const flavorFR = pokemonFR.flavor_text_entries.find(entry => entry.language.name === "fr")?.flavor_text;
     const cleanTextFR = flavorFR?.replace(/\f/g, ' ').replace(/\n/g, ' ');
-    
+
     const newPokemon = {
         PokemonID: id,
         PokemonName: capitalizeFirstLetter(pokemon.name),
@@ -241,7 +241,7 @@ async function addPokemonID(id) {
         PokemonPoids: pokemon.weight,
         PokemonType: capitalizeFirstLetter(pokemon.types[0].type.name),
         PokemonTalent: capitalizeFirstLetter(pokemon.abilities[0].ability.name),
-        PokemonAddManual : true
+        PokemonAddManual: true
     }
 
     //console.log(nameFR, cleanTextFR)
@@ -291,26 +291,26 @@ async function addPokemonID(id) {
     // Infos - Taille
     const pokemonInfosHeight = document.createElement("div")
     pokemonInfosHeight.classList.add("pokemon-infos__height")
-    pokemonInfosHeight.innerHTML = `<b>Taille</b> : ${(newPokemon.PokemonTaille/10)}m`
-    pokemonInfos.appendChild(pokemonInfosHeight)  
+    pokemonInfosHeight.innerHTML = `<b>Taille</b> : ${(newPokemon.PokemonTaille / 10)}m`
+    pokemonInfos.appendChild(pokemonInfosHeight)
 
     // Infos - Poids
     const pokemonInfosWeight = document.createElement("div")
     pokemonInfosWeight.classList.add("pokemon-infos__weight")
-    pokemonInfosWeight.innerHTML = `<b>Poids</b> : ${(newPokemon.PokemonPoids/10)}kg`
-    pokemonInfos.appendChild(pokemonInfosWeight)   
+    pokemonInfosWeight.innerHTML = `<b>Poids</b> : ${(newPokemon.PokemonPoids / 10)}kg`
+    pokemonInfos.appendChild(pokemonInfosWeight)
 
     // Infos - Type
     const pokemonInfosType = document.createElement("div")
     pokemonInfosType.classList.add("pokemon-infos__type")
     pokemonInfosType.innerHTML = `<b>Type</b> : ${newPokemon.PokemonType}`
-    pokemonInfos.appendChild(pokemonInfosType)   
+    pokemonInfos.appendChild(pokemonInfosType)
 
     // Infos - Talent
     const pokemonInfosTalent = document.createElement("div")
     pokemonInfosTalent.classList.add("pokemon-infos__talent")
     pokemonInfosTalent.innerHTML = `<b>Talent</b> : ${newPokemon.PokemonTalent}`
-    pokemonInfos.appendChild(pokemonInfosTalent)   
+    pokemonInfos.appendChild(pokemonInfosTalent)
 
     // Button Add to my team
     const pokemonBtnAddTeam = document.createElement("button")
@@ -383,8 +383,8 @@ pokemonTeamCell.forEach(function (object) {
 // Ajout des events de layout sur les boutons
 const btnLayoutGrid = document.querySelector("#btn-layout-grid")
 btnLayoutGrid.addEventListener("click", () => {
-    pokemonList.classList.add("pokemon-list--grid"); 
-    pokemonList.classList.remove("pokemon-list--list"); 
+    pokemonList.classList.add("pokemon-list--grid");
+    pokemonList.classList.remove("pokemon-list--list");
     const info_list = pokemonList.querySelectorAll(".pokemon-details .pokemon-infos")
     info_list.forEach(function (object) {
         object.classList.add("hidden")
@@ -399,19 +399,19 @@ btnLayoutGrid.addEventListener("click", () => {
 
 const btnLayoutList = document.querySelector("#btn-layout-list")
 btnLayoutList.addEventListener("click", () => {
-    pokemonList.classList.add("pokemon-list--list"); 
-    pokemonList.classList.remove("pokemon-list--grid"); 
+    pokemonList.classList.add("pokemon-list--list");
+    pokemonList.classList.remove("pokemon-list--grid");
     const info_list = pokemonList.querySelectorAll(".pokemon-details .pokemon-infos")
     info_list.forEach(function (object) {
         object.classList.remove("hidden")
     })
-    
+
     const detail_list = pokemonList.querySelectorAll(".pokemon-details")
     detail_list.forEach(function (object) {
         object.classList.remove("pokemon-details--grid")
         object.classList.add("pokemon-details--list")
     })
-    
+
 })
 
 // Ajout du formulaire sur le bouton +
@@ -422,7 +422,7 @@ btnAddPokemon.addEventListener('click', () => {
 // Empeche le refresh formulaire
 const form = document.querySelector("#myform")
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
     event.preventDefault()
     formAddPokemon.classList.add('hidden')
     const id = form.elements[0].value
@@ -436,9 +436,22 @@ btnClose.addEventListener('click', () => {
 });
 
 // Carrousel v1
-/*
+const carrousel = document.querySelector('.carrousel-slide-track');
+let index = 0;
+
+function slideTo(i) {
+    carrousel.style.transform = `translateX(-${i * 100}%)`;
+}
+
+setInterval(() => {
+    index = (index + 1) % 2;
+    slideTo(index);
+}, 6000);
+
+// Carrousel v2
+
 let currentIndex = 0;
-const slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll('.slide_c');
 const totalSlides = slides.length;
 
 function showSlide(index) {
@@ -452,18 +465,5 @@ function nextSlide() {
     showSlide(currentIndex);
 }
 
-setInterval(nextSlide, 4000);
-*/
+setInterval(nextSlide, 6000);
 
-// Carrousel v2
-const carrousel = document.querySelector('.carrousel-slide-track');
-let index = 0;
-
-function slideTo(i) {
-  carrousel.style.transform = `translateX(-${i * 100}%)`;
-}
-
-setInterval(() => {
-    index = (index + 1) % 2;
-    slideTo(index);
-}, 6000);
