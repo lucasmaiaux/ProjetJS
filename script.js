@@ -15,6 +15,12 @@ function getRdmPokemonID() {
     return Math.floor(Math.random() * 898) + 1
 }
 
+// Fonction qui met la première lettre en majuscule 
+function capitalizeFirstLetter(str) {
+    if (!str) return "";
+    return str[0].toUpperCase() + str.slice(1);
+}
+
 // fonction qui génère 1 pokemon aléatoire en haut de la page
 async function randomPokemon() {
 
@@ -102,21 +108,25 @@ async function addPokemon() {
     
     const newPokemon = {
         PokemonID: id,
-        PokemonName: pokemon.name,
+        PokemonName: capitalizeFirstLetter(pokemon.name),
         PokemonNameFR: nameFR,
         PokemonImage: pokemon.sprites.other["official-artwork"].front_default,
         PokemonDescriptif: cleanTextFR,
         PokemonTaille: pokemon.height,
         PokemonPoids: pokemon.weight,
-        PokemonType: pokemon.types[0].type.name,
-        PokemonTalent: pokemon.abilities[0].ability.name
+        PokemonType: capitalizeFirstLetter(pokemon.types[0].type.name),
+        PokemonTalent: capitalizeFirstLetter(pokemon.abilities[0].ability.name)
     }
 
     //console.log(nameFR, cleanTextFR)
 
     // Bloc général
     const pokemonDetails = document.createElement("div")
-    pokemonDetails.classList.add("pokemon-details")
+    pokemonDetails.classList.add("pokemon-details", "pokemon-details--grid")
+
+    // Main frame
+    const pokemonMainFrame = document.createElement("div")
+    pokemonMainFrame.classList.add("pokemon-mainframe")
 
     // Name
     const pokemonName = document.createElement("div")
@@ -134,44 +144,51 @@ async function addPokemon() {
     const pokemonInfos = document.createElement("div")
     pokemonInfos.classList.add("pokemon-infos", "hidden")
 
-    // Infos - Name
-    const pokemonInfosName = document.createElement("div")
-    pokemonInfosName.classList.add("pokemon-infos__name")
-    pokemonInfosName.innerText = newPokemon.PokemonName
-    pokemonInfos.appendChild(pokemonInfosName)
+    // Infos - NameFR
+    const pokemonInfosNameFRA = document.createElement("div")
+    pokemonInfosNameFRA.classList.add("pokemon-infos__nameFRA")
+    pokemonInfosNameFRA.innerHTML = `<b>Nom (FR)</b> : ${newPokemon.PokemonNameFR}`
+    pokemonInfos.appendChild(pokemonInfosNameFRA)
+
+    // Infos - NameENG
+    const pokemonInfosNameENG = document.createElement("div")
+    pokemonInfosNameENG.classList.add("pokemon-infos__nameENG")
+    pokemonInfosNameENG.innerHTML = `<b>Nom (EN)</b> : ${newPokemon.PokemonName}`
+    pokemonInfos.appendChild(pokemonInfosNameENG)
 
     // Infos - Descriptif
     const pokemonInfosDescription = document.createElement("div")
     pokemonInfosDescription.classList.add("pokemon-infos__description")
-    pokemonInfosDescription.innerText = newPokemon.PokemonDescriptif
+    pokemonInfosDescription.innerHTML = `<b>Descriptif</b> : ${newPokemon.PokemonDescriptif}`
     pokemonInfos.appendChild(pokemonInfosDescription)
 
     // Infos - Taille
     const pokemonInfosHeight = document.createElement("div")
     pokemonInfosHeight.classList.add("pokemon-infos__height")
-    pokemonInfosHeight.innerText = newPokemon.PokemonTaille
+    pokemonInfosHeight.innerHTML = `<b>Taille</b> : ${(newPokemon.PokemonTaille/10)}m`
     pokemonInfos.appendChild(pokemonInfosHeight)  
 
     // Infos - Poids
     const pokemonInfosWeight = document.createElement("div")
     pokemonInfosWeight.classList.add("pokemon-infos__weight")
-    pokemonInfosWeight.innerText = newPokemon.PokemonPoids
+    pokemonInfosWeight.innerHTML = `<b>Poids</b> : ${(newPokemon.PokemonPoids/10)}kg`
     pokemonInfos.appendChild(pokemonInfosWeight)   
 
     // Infos - Type
     const pokemonInfosType = document.createElement("div")
     pokemonInfosType.classList.add("pokemon-infos__type")
-    pokemonInfosType.innerText = newPokemon.PokemonType
+    pokemonInfosType.innerHTML = `<b>Type</b> : ${newPokemon.PokemonType}`
     pokemonInfos.appendChild(pokemonInfosType)   
 
     // Infos - Talent
     const pokemonInfosTalent = document.createElement("div")
     pokemonInfosTalent.classList.add("pokemon-infos__talent")
-    pokemonInfosTalent.innerText = newPokemon.PokemonTalent
+    pokemonInfosTalent.innerHTML = `<b>Talent</b> : ${newPokemon.PokemonTalent}`
     pokemonInfos.appendChild(pokemonInfosTalent)   
 
-    pokemonDetails.appendChild(pokemonName)
-    pokemonDetails.appendChild(pokemonImage)
+    pokemonMainFrame.appendChild(pokemonName)
+    pokemonMainFrame.appendChild(pokemonImage)
+    pokemonDetails.appendChild(pokemonMainFrame)
     pokemonImage.appendChild(pokemonImageImg)
     pokemonDetails.appendChild(pokemonInfos)
 
@@ -228,6 +245,12 @@ btnLayoutGrid.addEventListener("click", () => {
     info_list.forEach(function (object) {
         object.classList.add("hidden")
     })
+
+    const detail_list = pokemonList.querySelectorAll(".pokemon-details")
+    detail_list.forEach(function (object) {
+        object.classList.remove("pokemon-details--list")
+        object.classList.add("pokemon-details--grid")
+    })
 })
 
 const btnLayoutList = document.querySelector("#btn-layout-list")
@@ -238,4 +261,11 @@ btnLayoutList.addEventListener("click", () => {
     info_list.forEach(function (object) {
         object.classList.remove("hidden")
     })
+    
+    const detail_list = pokemonList.querySelectorAll(".pokemon-details")
+    detail_list.forEach(function (object) {
+        object.classList.remove("pokemon-details--grid")
+        object.classList.add("pokemon-details--list")
+    })
+    
 })

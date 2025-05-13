@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Flexo Medium', sans-serif;
+}
+
 hr {
     width: 75%; 
     height: 1px;
@@ -125,13 +129,30 @@ hr {
     margin-right : 20px;
 }
 
-.pokemon-list .pokemon-details {
+.pokemon-details--list {
+    display: flex;
+}
+
+.pokemon-details--grid {
+    width : 170px;
+    height : 200px;
+}
+
+.pokemon-mainframe {
     margin : 10px;
     padding : 10px;
     border : 1px solid grey;
     border-radius: 25px;
     width : 150px;
     height : 180px;
+}
+
+.pokemon-infos {
+    padding-top : 20px;
+}
+
+.pokemon-infos *{
+    margin-bottom : 5px;
 }
 
 .pokemon-list--grid {
@@ -144,4 +165,8 @@ hr {
     display: flex;
     flex-direction : column;
     justify-content : center;
+}
+
+.pokemon-list .pokemon-details--list {
+
 }
