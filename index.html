@@ -19,7 +19,7 @@
         
         <div class="pokemon-logo">
             <h1>Lucadex</h1>
-            <ul class="hidden">
+            <ul class="invisible">
                 <li><a href="">Accueil</a></li>
                 <li><a href="">Jeu</a></li>
             </ul>
@@ -37,17 +37,34 @@
     <div class="main-feed">
 
         <!-- RANDOM Pokemon-->
-        <div class="random-pokemon">
-            <div class="pokemon-details">
-                <div class="pokemon-name"></div>
-                <div class="pokemon-image">
-                    <img></img>
+        <div class="wrap-3-columns">
+
+            <!-- Carrousel -->
+            <div class="carrousel-slide-wrapper">
+                <div class="carrousel-slide-track">
+                    <img src="images/Pub_Fliiply.png" class="slide" ></img>
+                    <img src="images/Pub_Poketinder.png" class="slide" ></img>
                 </div>
-                <div class="pokemon-infos"></div>
             </div>
 
-            <button id="btn-refresh">Random</button>
+            <div class="random-pokemon">
+                <div class="pokemon-details">
+                    <div class="pokemon-name"></div>
+                    <div class="pokemon-image">
+                        <img></img>
+                    </div>
+                    <div class="pokemon-infos"></div>
+                </div>
+    
+                <button id="btn-refresh">Random</button>
+            </div>
+            <div>
+                <!--
+                <img class="carrousel_image" src="images/Pub_Poketinder.png"></img>
+                -->
+            </div>
         </div>
+
 
         <hr>
         <!-- MYTEAM Pokemon-->
@@ -62,7 +79,7 @@
             </div>
         </div>
 
-        <hr>
+        <!-- <hr> -->
         <!-- FEED Pokemon-->
         <div class="generate-feed">
             <select name="feed-gen-nb" id="feed-gen-nb">
@@ -75,8 +92,20 @@
             <button id="btn-generate-feed">Generate</button>
             <button id="btn-layout-grid" data-lucide="layout-grid"></button>
             <button id="btn-layout-list" data-lucide="layout-list"></button>
+            <button id="btn-addpokemon" data-lucide="square-plus"></button>
         </div>
         <div class="pokemon-list pokemon-list--grid"></div>
+    </div>
+
+    <div class="form-addpokemon hidden">
+        <div class="form-addpokemon__content">
+            <button id="btn-addpokemon__close" class="btn-close">✖</button>
+            <h2>Ajouter Pokemon</h2>
+            <form id="myform">
+                <input type="text" placeholder="ID du Pokemon" required><br>
+                <button id="btn-addpokemon__submit" type="submit">Ajouter</button>
+            </form>
+        </div>
     </div>
     
     <script>lucide.createIcons();</script>
