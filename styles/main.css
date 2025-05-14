@@ -9,7 +9,7 @@ body {
 }
 
 hr {
-    width: 75%; 
+    width: 75%;
     height: 1px;
     border: none;
     background: #3f3f3f;
@@ -21,29 +21,29 @@ hr {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.6); /* filtre blanc translucide */
-    backdrop-filter: blur(5px); /* floutage fancy */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* toujours au-dessus */
+    z-index: 999;
 }
 
 .form-addpokemon__content {
     position: relative;
-    display : flex;
-    flex-direction : column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     align-content: center;
     background: white;
     padding: 1.5em;
     border-radius: 1em;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
 
-.form-addpokemon__content form *{
-    font-size : 16px;
+.form-addpokemon__content form * {
+    font-size: 16px;
     margin-top: 10px;
 }
 
@@ -59,7 +59,7 @@ hr {
     color: white;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
@@ -79,7 +79,7 @@ hr {
     color: white;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
@@ -103,7 +103,7 @@ hr {
     background-color: #28a745;
     color: white;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
@@ -115,18 +115,18 @@ hr {
 }
 
 .main-feed {
-    padding-top : 60px;
-    display:flex;
-    flex-direction:column;
-    
-    align-items:center;
-    
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
 }
 
 .pokemon-name {
-    text-align : center;
+    text-align: center;
     font-size: 1.5rem;
-    padding-top : 5px;
+    padding-top: 5px;
 }
 
 .random-pokemon .pokemon-name {
@@ -146,11 +146,11 @@ hr {
 
 /*     WRAPPER      */
 .wrap-3-columns {
-    display : grid;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 6rem;
     padding: 1rem;
-    justify-content : space-around;
+    justify-content: space-around;
     justify-items: center;
 }
 
@@ -200,84 +200,84 @@ hr {
 
 /*     RANDOM      */
 .random-pokemon {
-    margin : 10px;
-    padding : 10px;
+    margin: 10px;
+    padding: 10px;
     /*
     border : 2px solid;
     */
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #btn-refresh {
     font-size: 1rem;
-    padding : 5px;
+    padding: 5px;
 }
 
 /*     TEAM        */
 .pokemon-team {
-    height : 60px;
-    padding : 10px;
+    height: 60px;
+    padding: 10px;
 }
 
 .pokemon-team__preview {
-    display : flex;
-    border : solid;
+    display: flex;
+    border: solid;
 }
 
 .pokemon-team__preview_cell {
-    width : 50px;
-    height : 50px;
-    border : solid 1px black;
+    width: 50px;
+    height: 50px;
+    border: solid 1px black;
     position: relative;
-    color : white;
+    color: white;
 }
 
-.pokemon-team__preview_cell img{
+.pokemon-team__preview_cell img {
     position: absolute;
     margin: auto;
-    max-width:100%;
-    height : auto;
+    max-width: 100%;
+    height: auto;
     top: 0;
     left: 0;
-    z-index: 10; 
+    z-index: 5;
 }
 
 /*     FEED        */
 .pokemon-list .pokemon-image img {
     display: block;
     margin: auto;
-    max-width:100%;
-    height : auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .generate-feed {
-    display : flex;
-    align-items : center;
-    padding : 20px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .generate-feed select {
     font-size: 1rem;
-    padding : 5px;
+    padding: 5px;
 }
 
 #btn-generate-feed {
     font-size: 1rem;
-    padding : 5px;
-    margin-left : 20px;
-    margin-right : 20px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.generate-feed svg{
-    margin-right : 20px;
+.generate-feed svg {
+    margin-right: 20px;
 }
 
 .pokemon-details {
-    position : relative;
+    position: relative;
 }
 
 .pokemon-details--list {
@@ -285,37 +285,37 @@ hr {
 }
 
 .pokemon-details--grid {
-    width : 170px;
-    height : 200px;
+    width: 170px;
+    height: 200px;
 }
 
 .pokemon-mainframe {
-    margin : 10px;
-    padding : 10px;
-    border : 1px solid grey;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid grey;
     border-radius: 25px;
-    width : 150px;
-    height : 180px;
+    width: 150px;
+    height: 180px;
 }
 
 .pokemon-infos {
-    padding-top : 20px;
+    padding-top: 20px;
 }
 
-.pokemon-infos *{
-    margin-bottom : 5px;
+.pokemon-infos * {
+    margin-bottom: 5px;
 }
 
 .pokemon-list--grid {
     display: flex;
-    flex-wrap : wrap;
-    justify-content : center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .pokemon-list--list {
     display: flex;
-    flex-direction : column;
-    justify-content : center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hidden {
@@ -323,5 +323,56 @@ hr {
 }
 
 .invisible {
-    visibility : hidden;
+    visibility: hidden;
+}
+
+/*     MEMORY       */
+/* Dropdown Button */
+.btn-difficulty {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.btn-difficulty:hover,
+.btn-difficulty:focus {
+    background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
 }

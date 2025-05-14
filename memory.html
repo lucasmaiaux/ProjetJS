@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucadex</title>
+    <link rel="stylesheet" href="styles/layouts/header.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/base/fonts.css">
+
+    <link rel="icon" href="https://le-campus-numerique.fr/wp-content/uploads/2020/11/favicon.png">
+    <link rel="shortcut icon" href="https://assets.pokemon.com/static2/_ui/img/favicon.ico">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Barre de navigation -->
+    <header class="topbar">
+
+        <div class="pokemon-logo">
+            <h1>Lucadex</h1>
+            <ul class="invisible">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="memory.html">Jeu</a></li>
+            </ul>
+        </div>
+
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="memory.html">Jeu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-feed">
+
+        <div class="dropdown">
+            <button onclick="myFunction()" class="btn-difficulty">Difficulté</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a id="myDropdown_easy">Facile</a>
+                <a id="myDropdown_medium">Moyen</a>
+                <a id="myDropdown_hard">Difficile</a>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <script>lucide.createIcons();</script>
+    <script src="memory.js"></script>
+
+</body>
+
+</html>
