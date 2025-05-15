@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Flexo Medium', sans-serif;
+}
+
+hr {
+    width: 75%;
+    height: 1px;
+    border: none;
+    background: #3f3f3f;
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.main-feed {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+.settings_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #959edd;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown Button */
+.btn-difficulty {
+    /*
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    */
+    background-color: #FFDE00;
+    border: 2px solid #222;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #222;
+    transition: all 0.3s ease;
+}
+
+/* Dropdown button on hover & focus */
+.btn-difficulty:hover,
+.btn-difficulty:focus {
+    /*
+    background-color: #2980B9;
+    */
+    background-color: #CC0000;
+    color: #fff;
+    border-color: #fff;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    /*
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    */
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    border: 2px solid #959edd;
+    border-radius: 8px;
+    min-width: 160px;
+    z-index: 1;
+    margin-top: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    /*
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    */
+    color: #222;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    /*
+    background-color: #ddd;
+    */
+    background-color: #FFDE00;
+    color: #000;
+}
+
+.info_game {
+    padding-top : 10px;
+}
+
+.btn-startGame {
+    margin : 10px auto;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    color: #222;
+    display: block;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+/*        MEMORY GRILLE      */
+.memory_wrap {
+    display : grid;
+    grid-template-columns : 1fr 1fr 1fr 1fr 1fr 1fr;
+    width : 600px;
+    height : 500px;
+    /*
+    border: 1px solid black;
+    */
+}
+
+.card {
+    
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+
+}
+
+.front img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.back img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.visible {
+    visibility: visible;
+}
